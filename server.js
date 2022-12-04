@@ -33,7 +33,7 @@ db.on("error", () => {
 });
 db.once("open", () => {
   console.log("connected to Mongo DB ");
-  init();
+//   init();
 });
 
 /**
@@ -42,27 +42,28 @@ db.once("open", () => {
  * This method is for the demonstration purpose,
  * ideally one ADMIN user should have been created in the backend
  */
-async function init() {
-  var user = await User.findOne({ userId: "admin" });
 
-  if (user) {
-    console.log("Admin user already present");
-    return;
-  }
+// async function init() {
+//   var user = await User.findOne({ userId: "admin" });
 
-  try {
-    user = await User.create({
-      name: "Vishwa",
-      userId: "admin", // It should be atleat 16, else will throw error
-      email: "Kankvish@gmail.com", // If we don't pass this, it will throw the error
-      userType: "ADMIN",
-      password: bcrypt.hashSync("Welcome1", 8), //this field should be hidden from the end user
-    });
-    console.log(user);
-  } catch (e) {
-    console.log(e.message);
-  }
-}
+//   if (user) {
+//     console.log("Admin user already present");
+//     return;
+//   }
+
+//   try {
+//     user = await User.create({
+//       name: "Vishwa",
+//       userId: "admin", // It should be atleat 16, else will throw error
+//       email: "Kankvish@gmail.com", // If we don't pass this, it will throw the error
+//       userType: "ADMIN",
+//       password: bcrypt.hashSync("Welcome1", 8), //this field should be hidden from the end user
+//     });
+//     console.log(user);
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+// }
 
 /**
  * importing the routes
@@ -75,6 +76,12 @@ app.get("/hello", (req, res) => {
   res.send("HelloWorld!");
 });
 
+app.get("/world", (req, res) => {
+  res.send("world!");
+});
+
 app.listen(serverConfig.PORT, () => {
   console.log(`Application started on the port num : ${serverConfig.PORT}`);
 });
+
+// __type: "com.amazon.coral.validate#ValidationException";
