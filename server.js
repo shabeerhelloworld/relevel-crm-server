@@ -71,8 +71,8 @@ require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/ticket.routes")(app);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/hello", (req, res) => {
+  res.send("HelloWorld!");
 });
 
 app.listen(serverConfig.PORT, () => {
